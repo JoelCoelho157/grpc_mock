@@ -19,7 +19,7 @@ module GrpcMock
     end
 
     def match?(path, request)
-      @path == path && (@request.nil? || @request == request) && (@block.nil? || @block.call(path))
+      @path == path || /#{@path}/.match(path) && (@request.nil? || @request == request) && (@block.nil? || @block.call(path))
     end
   end
 end
